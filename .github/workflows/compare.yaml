@@ -1,0 +1,24 @@
+name: Compare
+
+on:
+  workflow_dispatch:
+    inputs:
+      oldVersion:
+        type: string
+        required: true
+        description: 'old version'
+      newVersion:
+        type: string
+        required: true
+        description: 'new version'
+
+jobs:
+  compare:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout old version
+        uses: actions/checkout@v3
+        with:
+          ref: versions/${{ github.event.inputs.oldVersion }}
+
