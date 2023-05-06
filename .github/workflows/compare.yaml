@@ -20,6 +20,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: Set up git
+        run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+
       - name: Set up Homebrew
         run: |
           echo "/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin" >> $GITHUB_PATH
