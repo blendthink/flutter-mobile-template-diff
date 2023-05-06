@@ -17,8 +17,68 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
-      - name: Checkout old version
+      - name: Checkout
         uses: actions/checkout@v3
-        with:
-          ref: versions/${{ github.event.inputs.oldVersion }}
 
+      - name: Set up fvm
+        shell: bash
+        run: |
+          brew tap leoafarias/fvm
+          brew install fvm
+
+      - name: Install flutter versions
+        shell: bash
+        run: |
+          fvm install ${{ github.event.inputs.oldVersion }}
+          fvm install ${{ github.event.inputs.newVersion }}
+
+      - name: Reset and Checkout branch
+        shell: bash
+        run: |
+          git switch -C versions/${{ github.event.inputs.oldVersion }}
+
+      - name: Create old flutter project
+        shell: bash
+        working-directory: template
+        run: |
+          fvm use ${{ github.event.inputs.oldVersion }} --force
+          fvm flutter create \
+            -t app \
+            -i swift \
+            -a kotlin \
+            --platforms ios,android \
+            --org dev.blendthink \
+            --project-name template \
+            --empty \
+            .
+
+      - name: Commit and Push old flutter project
+        shell: bash
+        run: |
+          git add .
+          git commit -m "Create flutter project"
+          git push -f -u origin versions/${{ github.event.inputs.oldVersion }}
+
+      - name: Create new flutter project
+        shell: bash
+        working-directory: template
+        run: |
+          ls -A | grep -v '^\.fvm$' | xargs rm -r
+          fvm use ${{ github.event.inputs.newVersion }} --force
+          fvm flutter create \
+            -t app \
+            -i swift \
+            -a kotlin \
+            --platforms ios,android \
+            --org dev.blendthink \
+            --project-name template \
+            --empty \
+            .
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          title: 'Compare ${{ github.event.inputs.oldVersion }} and ${{ github.event.inputs.newVersion }}'
+          base: versions/${{ github.event.inputs.oldVersion }}
+          branch: comparisons/${{ github.event.inputs.oldVersion }}-${{ github.event.inputs.newVersion }}
+          branch-suffix: timestamp
