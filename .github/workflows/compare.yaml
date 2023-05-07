@@ -3,11 +3,11 @@ name: Compare
 on:
   workflow_dispatch:
     inputs:
-      oldVersion:
+      old-version:
         type: string
         required: true
         description: 'old version'
-      newVersion:
+      new-version:
         type: string
         required: true
         description: 'new version'
@@ -39,25 +39,25 @@ jobs:
       - name: Install flutter versions
         shell: bash
         run: |
-          fvm install ${{ github.event.inputs.oldVersion }}
-          fvm install ${{ github.event.inputs.newVersion }}
+          fvm install ${{ github.event.inputs.old-version }}
+          fvm install ${{ github.event.inputs.new-version }}
 
       - name: Reset and Checkout branch
         shell: bash
         run: |
-          git switch -C versions/${{ github.event.inputs.oldVersion }}
+          git switch -C versions/${{ github.event.inputs.old-version }}
 
       - name: Create old flutter template project
         uses: ./.github/actions/create-flutter-template-project
         with:
-          flutter-version: ${{ github.event.inputs.oldVersion }}
+          flutter-version: ${{ github.event.inputs.old-version }}
 
       - name: Commit and Push old flutter project
         shell: bash
         run: |
           git add .
           git commit -m "Create flutter project"
-          git push -f -u origin versions/${{ github.event.inputs.oldVersion }}
+          git push -f -u origin versions/${{ github.event.inputs.old-version }}
 
       - name: Clean old flutter template project
         shell: bash
@@ -67,12 +67,12 @@ jobs:
       - name: Create new flutter template project
         uses: ./.github/actions/create-flutter-template-project
         with:
-          flutter-version: ${{ github.event.inputs.newVersion }}
+          flutter-version: ${{ github.event.inputs.new-version }}
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
         with:
-          title: 'Compare ${{ github.event.inputs.oldVersion }} and ${{ github.event.inputs.newVersion }}'
-          base: versions/${{ github.event.inputs.oldVersion }}
-          branch: comparisons/${{ github.event.inputs.oldVersion }}-${{ github.event.inputs.newVersion }}
+          title: 'Compare ${{ github.event.inputs.old-version }} and ${{ github.event.inputs.new-version }}'
+          base: versions/${{ github.event.inputs.old-version }}
+          branch: comparisons/${{ github.event.inputs.old-version }}-${{ github.event.inputs.new-version }}
           branch-suffix: timestamp
