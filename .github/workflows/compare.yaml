@@ -61,6 +61,7 @@ jobs:
 
       - name: Clean old flutter template project
         shell: bash
+        working-directory: template
         run: |
           ls -A | grep -v '^\.fvm$' | xargs rm -r
 
