@@ -47,20 +47,10 @@ jobs:
         run: |
           git switch -C versions/${{ github.event.inputs.oldVersion }}
 
-      - name: Create old flutter project
-        shell: bash
-        working-directory: template
-        run: |
-          fvm use ${{ github.event.inputs.oldVersion }} --force
-          fvm flutter create \
-            -t app \
-            -i swift \
-            -a kotlin \
-            --platforms ios,android \
-            --org dev.blendthink \
-            --project-name template \
-            --empty \
-            .
+      - name: Create old flutter template project
+        uses: ./.github/actions/create-flutter-template-project
+        with:
+          flutter-version: ${{ github.event.inputs.oldVersion }}
 
       - name: Commit and Push old flutter project
         shell: bash
@@ -69,21 +59,15 @@ jobs:
           git commit -m "Create flutter project"
           git push -f -u origin versions/${{ github.event.inputs.oldVersion }}
 
-      - name: Create new flutter project
+      - name: Clean old flutter template project
         shell: bash
-        working-directory: template
         run: |
           ls -A | grep -v '^\.fvm$' | xargs rm -r
-          fvm use ${{ github.event.inputs.newVersion }} --force
-          fvm flutter create \
-            -t app \
-            -i swift \
-            -a kotlin \
-            --platforms ios,android \
-            --org dev.blendthink \
-            --project-name template \
-            --empty \
-            .
+
+      - name: Create new flutter template project
+        uses: ./.github/actions/create-flutter-template-project
+        with:
+          flutter-version: ${{ github.event.inputs.newVersion }}
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5

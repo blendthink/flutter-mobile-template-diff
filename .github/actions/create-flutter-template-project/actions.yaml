@@ -1,0 +1,25 @@
+name: Create Flutter Template Project
+description: 'Create Flutter template project with specified flutter version.'
+
+inputs:
+  flutter-version:
+    required: true
+    description: 'flutter version'
+
+runs:
+  using: composite
+  steps:
+    - name: Create flutter template project
+      shell: bash
+      working-directory: template
+      run: |
+        fvm use ${{ inputs.flutter-version }} --force
+        fvm flutter create \
+          -t app \
+          -i swift \
+          -a kotlin \
+          --platforms ios,android \
+          --org dev.blendthink \
+          --project-name template \
+          --empty \
+          .
