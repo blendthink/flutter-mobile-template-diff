@@ -83,7 +83,7 @@ jobs:
             ## Flutter
             - [Flutter release notes](https://docs.flutter.dev/release/release-notes)
             - [Hotfixes to the Stable Channel](https://github.com/flutter/flutter/wiki/Hotfixes-to-the-Stable-Channel)
-            - [Comparing changes](https://github.com/flutter/flutter/compare/)
+            - [Comparing changes](https://github.com/flutter/flutter/compare/${{ github.event.inputs.old-version }}...${{ github.event.inputs.new-version }})
             
             ## Dart
             - [What’s new](https://dart.dev/guides/whats-new)
