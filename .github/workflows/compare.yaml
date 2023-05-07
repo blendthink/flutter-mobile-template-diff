@@ -42,7 +42,7 @@ jobs:
           fvm install ${{ github.event.inputs.old-version }}
           fvm install ${{ github.event.inputs.new-version }}
 
-      - name: Reset and Checkout branch
+      - name: Recreate and checkout branch
         shell: bash
         run: |
           git switch -C versions/${{ github.event.inputs.old-version }}
@@ -52,11 +52,11 @@ jobs:
         with:
           flutter-version: ${{ github.event.inputs.old-version }}
 
-      - name: Commit and Push old flutter project
+      - name: Commit and force push old flutter template project
         shell: bash
         run: |
           git add .
-          git commit -m "Create flutter project"
+          git commit -m "Create flutter template project"
           git push -f -u origin versions/${{ github.event.inputs.old-version }}
 
       - name: Clean old flutter template project
@@ -70,7 +70,7 @@ jobs:
         with:
           flutter-version: ${{ github.event.inputs.new-version }}
 
-      - name: Create Pull Request
+      - name: Create pull request
         uses: peter-evans/create-pull-request@v5
         with:
           title: 'Compare ${{ github.event.inputs.old-version }} and ${{ github.event.inputs.new-version }}'
