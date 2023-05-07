@@ -79,3 +79,14 @@ jobs:
           base: versions/${{ github.event.inputs.old-version }}
           branch: comparisons/${{ github.event.inputs.old-version }}-${{ github.event.inputs.new-version }}
           branch-suffix: timestamp
+          body: |
+            ## Flutter
+            - [Flutter release notes](https://docs.flutter.dev/release/release-notes)
+            - [Hotfixes to the Stable Channel](https://github.com/flutter/flutter/wiki/Hotfixes-to-the-Stable-Channel)
+            - [Comparing changes](https://github.com/flutter/flutter/compare/)
+            
+            ## Dart
+            - [What’s new](https://dart.dev/guides/whats-new)
+            - [Dart language evolution](https://dart.dev/guides/language/evolution)
+            - [Changelog](https://github.com/dart-lang/sdk/blob/main/CHANGELOG.md)
+            - [Comparing changes](https://github.com/dart-lang/sdk/compare/)
