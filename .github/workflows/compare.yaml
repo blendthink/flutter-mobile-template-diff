@@ -12,6 +12,10 @@ on:
         required: true
         description: 'new version'
 
+env:
+  COMMIT_USER_NAME: github-actions
+  COMMIT_USER_EMAIL: 41898282+github-actions@users.noreply.github.com
+
 jobs:
   compare:
     runs-on: ubuntu-22.04
@@ -24,8 +28,8 @@ jobs:
       # https://github.com/orgs/community/discussions/26560
       - name: Set up git
         run: |
-          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
+          git config --local user.name "${{ env.COMMIT_USER_NAME }}"
+          git config --local user.email "${{ env.COMMIT_USER_EMAIL }}"
 
       # https://github.com/actions/runner-images/issues/6283
       - name: Set up Homebrew
@@ -75,6 +79,8 @@ jobs:
       - name: Create pull request
         uses: peter-evans/create-pull-request@v5
         with:
+          author: ${{ env.COMMIT_USER_NAME }} <${{ env.COMMIT_USER_EMAIL }}>
+          committer: ${{ env.COMMIT_USER_NAME }} <${{ env.COMMIT_USER_EMAIL }}>
           title: 'Compare ${{ github.event.inputs.old-version }} and ${{ github.event.inputs.new-version }}'
           base: versions/${{ github.event.inputs.old-version }}
           branch: comparisons/${{ github.event.inputs.old-version }}-${{ github.event.inputs.new-version }}
