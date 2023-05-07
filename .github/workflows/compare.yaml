@@ -81,6 +81,7 @@ jobs:
         with:
           author: ${{ env.COMMIT_USER_NAME }} <${{ env.COMMIT_USER_EMAIL }}>
           committer: ${{ env.COMMIT_USER_NAME }} <${{ env.COMMIT_USER_EMAIL }}>
+          commit-message: 'Update flutter template project'
           title: 'Compare ${{ github.event.inputs.old-version }} and ${{ github.event.inputs.new-version }}'
           base: versions/${{ github.event.inputs.old-version }}
           branch: comparisons/${{ github.event.inputs.old-version }}-${{ github.event.inputs.new-version }}
