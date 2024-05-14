@@ -39,9 +39,9 @@
     },
     {
       "name": "flutter",
-      "rootUri": "file:///home/runner/fvm/versions/3.19.3/packages/flutter",
+      "rootUri": "file:///home/runner/fvm/versions/3.22.0/packages/flutter",
       "packageUri": "lib/",
-      "languageVersion": "3.2"
+      "languageVersion": "3.3"
     },
     {
       "name": "flutter_lints",
@@ -51,27 +51,27 @@
     },
     {
       "name": "flutter_test",
-      "rootUri": "file:///home/runner/fvm/versions/3.19.3/packages/flutter_test",
+      "rootUri": "file:///home/runner/fvm/versions/3.22.0/packages/flutter_test",
+      "packageUri": "lib/",
+      "languageVersion": "3.3"
+    },
+    {
+      "name": "leak_tracker",
+      "rootUri": "file:///home/runner/.pub-cache/hosted/pub.dev/leak_tracker-10.0.4",
       "packageUri": "lib/",
       "languageVersion": "3.2"
     },
     {
-      "name": "leak_tracker",
-      "rootUri": "file:///home/runner/.pub-cache/hosted/pub.dev/leak_tracker-10.0.0",
-      "packageUri": "lib/",
-      "languageVersion": "3.1"
-    },
-    {
       "name": "leak_tracker_flutter_testing",
-      "rootUri": "file:///home/runner/.pub-cache/hosted/pub.dev/leak_tracker_flutter_testing-2.0.1",
+      "rootUri": "file:///home/runner/.pub-cache/hosted/pub.dev/leak_tracker_flutter_testing-3.0.3",
       "packageUri": "lib/",
-      "languageVersion": "3.1"
+      "languageVersion": "3.2"
     },
     {
       "name": "leak_tracker_testing",
-      "rootUri": "file:///home/runner/.pub-cache/hosted/pub.dev/leak_tracker_testing-2.0.1",
+      "rootUri": "file:///home/runner/.pub-cache/hosted/pub.dev/leak_tracker_testing-3.0.1",
       "packageUri": "lib/",
-      "languageVersion": "3.1"
+      "languageVersion": "3.2"
     },
     {
       "name": "lints",
@@ -93,7 +93,7 @@
     },
     {
       "name": "meta",
-      "rootUri": "file:///home/runner/.pub-cache/hosted/pub.dev/meta-1.11.0",
+      "rootUri": "file:///home/runner/.pub-cache/hosted/pub.dev/meta-1.12.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -105,7 +105,7 @@
     },
     {
       "name": "sky_engine",
-      "rootUri": "file:///home/runner/fvm/versions/3.19.3/bin/cache/pkg/sky_engine",
+      "rootUri": "file:///home/runner/fvm/versions/3.22.0/bin/cache/pkg/sky_engine",
       "packageUri": "lib/",
       "languageVersion": "3.2"
     },
@@ -141,7 +141,7 @@
     },
     {
       "name": "test_api",
-      "rootUri": "file:///home/runner/.pub-cache/hosted/pub.dev/test_api-0.6.1",
+      "rootUri": "file:///home/runner/.pub-cache/hosted/pub.dev/test_api-0.7.0",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
@@ -153,18 +153,21 @@
     },
     {
       "name": "vm_service",
-      "rootUri": "file:///home/runner/.pub-cache/hosted/pub.dev/vm_service-13.0.0",
+      "rootUri": "file:///home/runner/.pub-cache/hosted/pub.dev/vm_service-14.2.1",
       "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "3.3"
     },
     {
       "name": "template",
       "rootUri": "../",
       "packageUri": "lib/",
-      "languageVersion": "3.3"
+      "languageVersion": "3.4"
     }
   ],
-  "generated": "2024-05-14T03:46:04.446125Z",
+  "generated": "2024-05-14T03:46:34.145071Z",
   "generator": "pub",
-  "generatorVersion": "3.3.1"
+  "generatorVersion": "3.4.0",
+  "flutterRoot": "file:///home/runner/fvm/versions/3.22.0",
+  "flutterVersion": "3.22.0",
+  "pubCache": "file:///home/runner/.pub-cache"
 }
